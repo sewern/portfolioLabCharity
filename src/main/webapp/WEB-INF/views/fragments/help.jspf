@@ -11,6 +11,7 @@
 
     <ul class="help--slides-items">
       <%--c:set var="li" value="false"/--%>
+      <c:set var="liClose" value="true"/>
       <c:forEach items="${institutions}" var="institution" varStatus="institutionStatus">
         <%--c:set var="li" value="${institutionStatus.index mod 2 == 0}"/--%>
         <%--c:set var="li" value="${!li}"/--%>
@@ -22,10 +23,15 @@
             <div class="subtitle"><c:out value="${institution.description}"/></div>
           </div>
         <%--c:set var="li" value="${!li}"/--%>
-        <c:if test="${institutionStatus.index mod 2 == 1}">
+        <c:set var="liClose" value="${institutionStatus.index mod 2 == 1}"/>
+        <c:if test="${liClose}">
           </li>
         </c:if>
       </c:forEach>
+
+      <c:if test="${!liClose}">
+        </li>
+      </c:if>
     </ul>
   </div>
 </section>

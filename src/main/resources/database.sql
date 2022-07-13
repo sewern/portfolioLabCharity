@@ -17,4 +17,8 @@ values
 ( 'Fundacja “Bez domu”', 'Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania');
 */
 
+insert institutions( name, description)
+values
+('Fundacja "TEST"', 'Cel i misja: TEST.');
+
 select * from institutions;
