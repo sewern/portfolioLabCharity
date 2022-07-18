@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:set var="COLS_IN_ROW" value="2"/>
+
 <section class="help">
   <h2>Komu pomagamy?</h2>
 
@@ -10,28 +12,76 @@
       Możesz sprawdzić czym się zajmują.</p>
 
     <ul class="help--slides-items">
-      <%--c:set var="li" value="false"/--%>
+      <%--
       <c:set var="liClose" value="true"/>
       <c:forEach items="${institutions}" var="institution" varStatus="institutionStatus">
-        <%--c:set var="li" value="${institutionStatus.index mod 2 == 0}"/--%>
-        <%--c:set var="li" value="${!li}"/--%>
-        <c:if test="${institutionStatus.index mod 2 == 0}">
+        <c:if test="${institutionStatus.index mod COLS_IN_ROW == 0}">
           <li>
         </c:if>
           <div class="col">
             <div class="title"><c:out value="${institution.name}"/></div>
             <div class="subtitle"><c:out value="${institution.description}"/></div>
           </div>
-        <%--c:set var="li" value="${!li}"/--%>
-        <c:set var="liClose" value="${institutionStatus.index mod 2 == 1}"/>
+        <c:set var="liClose" value="${institutionStatus.count mod COLS_IN_ROW == 0}"/>
         <c:if test="${liClose}">
           </li>
         </c:if>
       </c:forEach>
-
       <c:if test="${!liClose}">
         </li>
       </c:if>
+      --%>
+
+      <%-- Rozwiązanie 1.
+        Bez użycia zagnieżdżonych pętli -początek i koniec wiersza sprawdzany przy kżdej iteracji.
+        Wariant 1 -z użyciem 1 pętli
+      --%>
+
+      <c:set var="institutionsSize" value="${institutions.size()}"/>
+      <c:set var="end" value="${(institutionsSize- 1)- (institutionsSize % COLS_IN_ROW)+
+        ((institutionsSize % COLS_IN_ROW!= 0) ? COLS_IN_ROW: 0)}"/>
+      <c:forEach var= "index" begin="0" end= "${end}" varStatus="institutionStatus">
+        <c:if test="${institutionStatus.index mod COLS_IN_ROW == 0}">
+          <li>
+        </c:if>
+        <div class="col">
+          <c:choose>
+            <c:when test="${index< institutionsSize}">
+              <div class="title"><c:out value="${institutions[index].name}"/></div>
+              <div class="subtitle"><c:out value="${institutions[index].description}"/></div>
+            </c:when>
+            <c:otherwise>
+              <div class="title">&nbsp;</div>
+              <div class="subtitle">&nbsp;</div>
+            </c:otherwise>
+          </c:choose>
+        </div>
+        <c:if test="${institutionStatus.count mod COLS_IN_ROW == 0}">
+          </li>
+        </c:if>
+      </c:forEach>
+
+      <%--
+        Wariant 2 -z użyciem 2 oddzielnych pętli:
+        -1 główna pętla po kolumnach -dla pełnych wierszy,
+        -następnie pętla pomocnicza po kolumnach -dla ostatniego wiersza.
+
+        <c:set var="institutionsSize" value="${institutions.size()}"/>
+        <c:set var="end" value="${institutionsSize- 1- institutionsSize % COLS_IN_ROW}"/>
+        <c:forEach var= "index" begin="0" end= "${end}" varStatus="institutionStatus">
+          <c:if test="${institutionStatus.index mod COLS_IN_ROW == 0}">
+            <li>
+          </c:if>
+          <div class="col">
+            <div class="title"><c:out value="${institutions[index].name}"/></div>
+            <div class="subtitle"><c:out value="${institutions[index].description}"/></div>
+          </div>
+          <c:if test="${institutionStatus.count mod COLS_IN_ROW == 0}">
+            </li>
+          </c:if>
+        </c:forEach>
+        --%>
+
     </ul>
   </div>
 </section>
