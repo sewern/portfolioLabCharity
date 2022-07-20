@@ -1,6 +1,8 @@
 package pl.coderslab.charity.service;
 
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.domain.IStats;
+import pl.coderslab.charity.domain.Stats;
 import pl.coderslab.charity.repository.DonationRepo;
 
 import javax.persistence.Tuple;
@@ -14,7 +16,12 @@ public class DonationService {
     this.donationRepo = donationRepo;
   }
 
-  //public Object[] getStats() { return donationRepo.getStats(); }
-  public Tuple getStats() { return donationRepo.getStats(); }
+  public Object[] getStatsAsObjArr() { return (Object[]) donationRepo.getStatsAsObj(); }
+
+  public Tuple getStatsAsTuple() { return donationRepo.getStatsAsTuple(); }
+
+  public IStats getStatsAsIntf() { return donationRepo.getStatsAsIntf(); }
+
+  public Stats getStatsAsClass() { return donationRepo.getStatsAsClass(); }
 }
 
