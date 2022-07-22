@@ -20,10 +20,12 @@ public class HomeController {
     @RequestMapping("/")
     public String homeAction(Model model){
         model.addAttribute("institutions", institutionService.getInstitutions());
-        model.addAttribute("statsAsObjArr", donationService.getStatsAsObjArr());
-        model.addAttribute("statsAsTuple", donationService.getStatsAsTuple());
-        model.addAttribute("statsAsIntf", donationService.getStatsAsIntf());
-        model.addAttribute("statsAsClass", donationService.getStatsAsClass());
+        model.addAttribute("donationQuantity", donationService.quantity());
+        model.addAttribute("donationCount", donationService.count());
+        //model.addAttribute("statsAsObjArr", donationService.getStatsAsObjArr());
+        //model.addAttribute("statsAsTuple", donationService.getStatsAsTuple());
+        //model.addAttribute("statsAsIntf", donationService.getStatsAsIntf());
+        //model.addAttribute("statsAsClass", donationService.getStatsAsClass());
         return "index";
     }
 }

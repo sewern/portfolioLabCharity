@@ -8,6 +8,9 @@ import pl.coderslab.charity.domain.Stats;
 import javax.persistence.Tuple;
 
 public interface DonationRepo extends JpaRepository<Donation, Long> {
+  @Query("select coalesce(sum(d.quantity), 0) from Donation d")
+  public int quantity();
+
   @Query("select coalesce(sum(d.quantity), 0), count(d) from Donation d")
   public Object getStatsAsObj();
 

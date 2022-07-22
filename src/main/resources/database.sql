@@ -17,8 +17,22 @@ values
 ( 'Fundacja “Bez domu”', 'Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania');
 */
 
-insert institutions( name, description)
+-- Lista fundacji
+/*insert institutions( name, description)
 values
 ('Fundacja "TEST"', 'Cel i misja: TEST.');
 
-select * from institutions;
+select * from institutions;*/
+
+-- Darowizny
+/*delete from donations;
+insert donations( quantity, pick_up_date, pick_up_time)
+values
+(1, '2022-07-01', '07:35'),
+(3, '2022-07-05', '09:55'),
+(2, '2022-07-07', '17:05'),
+(1, '2022-07-11', '10:20'),
+(3, '2022-07-11', '12:45');*/
+
+select * from donations;
+select ifnull( sum(quantity), 0), count(*) from donations;

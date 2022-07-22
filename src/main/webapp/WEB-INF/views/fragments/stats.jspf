@@ -3,20 +3,26 @@
 <section class="stats">
   <div class="container container--85">
     <div class="stats--item">
+      <%--
       <em>${statsAsObjArr[0]}<br></em>
       <em>${statsAsTuple.get(0)}<br></em>
-      <em>${statsAsIntf.getQuantity()}<br></em>
-      <em>${statsAsClass.getQuantity()}</em>
+      <em>${statsAsIntf.quantity}<br></em>
+      <em>${statsAsClass.quantity}<br></em>
+      --%>
+      <em>${donationQuantity}</em>
       <h3>Oddanych worków</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
         tempora!</p>
     </div>
 
     <div class="stats--item">
+      <%--
       <em>${statsAsObjArr[1]}<br></em>
       <em>${statsAsTuple.get(1)}<br></em>
-      <em>${statsAsIntf.getCount()}<br></em>
-      <em>${statsAsClass.count}</em>
+      <em>${statsAsIntf.count}<br></em>
+      <em>${statsAsClass.count}<br></em>
+      --%>
+      <em>${donationCount}</em>
       <h3>Przekazanych darów</h3>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
         quam.</p>

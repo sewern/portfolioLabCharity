@@ -18,11 +18,4 @@ public class Stats {
     return count;
   }
 
-  public void setQuantity(Integer quantity) {
-    this.quantity = quantity;
-  }
-
-  public void setCount(Long count) {
-    this.count = count;
-  }
 }
