@@ -11,7 +11,7 @@
     <form:checkboxes path="categories" items="${categories}"/><br>
     <form:errors path="categories" cssClass="error" element="div"/>
     <form:label path="institution">Fundacja:</form:label>
-    <form:select path="institution" items="${institutions}"/><br>
+    <form:select path="institution.id" items="${institutions}"/><br>
     <form:errors path="institution" cssClass="error" element="div"/>
     <form:label path="zipCode">Kod poczt.:</form:label>
     <form:input path="zipCode"/><br>

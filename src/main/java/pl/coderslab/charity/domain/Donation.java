@@ -18,8 +18,8 @@ public class Donation {
   private Integer quantity;
 
   // lista obiektów typu Category
-  @OneToMany
-  @JoinColumn(name = "donation_id")
+  @ManyToMany
+  //@JoinColumn(name = "donation_id")
   private Set<Category> categories = new HashSet<>();
   @ManyToOne(fetch = FetchType.LAZY)
   Institution institution;

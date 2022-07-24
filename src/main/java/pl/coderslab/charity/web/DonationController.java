@@ -50,7 +50,7 @@ public class DonationController {
     if (result.hasErrors()) {
       return "donation";
     }
-    //donationService.add(donation);
+    donationService.add(donation);
     return "redirect:/";
   }
 }
