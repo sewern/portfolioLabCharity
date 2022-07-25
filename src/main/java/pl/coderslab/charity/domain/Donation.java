@@ -3,6 +3,7 @@ package pl.coderslab.charity.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
@@ -26,6 +27,8 @@ public class Donation {
   private String street;
   private String city;
   private String zipCode;
+  //@Pattern(regexp = "(?<!\\w)(\\(?(\\+|00)?48\\)?)?[ -]?\\d{3}[ -]?\\d{3}[ -]?\\d{3}(?!\\w)")
+  private String phone;
   @Column(nullable= false)
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate pickUpDate;
@@ -89,6 +92,10 @@ public class Donation {
   public void setZipCode(String zipCode) {
     this.zipCode = zipCode;
   }
+
+  public String getPhone() { return phone; }
+
+  public void setPhone(String phone) { this.phone = phone; }
 
   public LocalDate getPickUpDate() {
     return pickUpDate;

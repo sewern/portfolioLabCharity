@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<section class="about-us">
+<section id="about-us" class="about-us">
   <div class="about-us--text">
     <h2>O nas</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero

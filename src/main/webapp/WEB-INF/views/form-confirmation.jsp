@@ -10,16 +10,18 @@
     <title>Document</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
   </head>
+
   <body>
-    <%@include file="fragments/header.jspf"%>
+    <header class="header--form-page">
+      <%@include file="fragments/nav-form.jspf"%>
 
-    <%@include file="fragments/stats.jspf"%>
-
-    <%@include file="fragments/steps.jspf"%>
-
-    <%@include file="fragments/about.jspf"%>
-
-    <%@include file="fragments/help.jspf"%>
+      <div class="slogan container container--90">
+          <h2>
+            Dziękujemy za przesłanie formularza Na maila prześlemy wszelkie
+            informacje o odbiorze.
+          </h2>
+      </div>
+    </header>
 
     <%@include file="fragments/footer.jspf"%>
 

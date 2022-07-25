@@ -42,15 +42,23 @@ public class DonationController {
   @RequestMapping("/donation")
   public String donationAction(Model model){
     model.addAttribute("donation", new Donation());
+    //return "form";
     return "donation";
   }
 
-  @RequestMapping(value = "/donation", method = RequestMethod.POST)
-  public String saveBook(@Valid Donation donation, BindingResult result) {
-    if (result.hasErrors()) {
-      return "donation";
-    }
+  @RequestMapping("/form")
+  public String donationForm(Model model){
+    model.addAttribute("donation", new Donation());
+    return "form";
+  }
+
+  @RequestMapping(value = "/form", method = RequestMethod.POST)
+  public String saveDonation(@Valid Donation donation, BindingResult result) {
+    //if (result.hasErrors()) {
+    //  return "form";
+    //}
     donationService.add(donation);
-    return "redirect:/";
+    //return "redirect:/";
+    return "form-confirmation";
   }
 }

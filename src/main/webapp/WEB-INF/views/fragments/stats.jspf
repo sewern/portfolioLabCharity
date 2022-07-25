@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<section class="stats">
+<section id="stats" class="stats">
   <div class="container container--85">
     <div class="stats--item">
       <%--

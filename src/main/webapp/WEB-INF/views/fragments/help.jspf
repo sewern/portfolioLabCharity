@@ -1,9 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="COLS_IN_ROW" value="2"/>
-
-<section class="help">
+<section id="help" class="help">
   <h2>Komu pomagamy?</h2>
 
   <!-- SLIDE 1 -->
@@ -12,24 +10,26 @@
       Możesz sprawdzić czym się zajmują.</p>
 
     <ul class="help--slides-items">
+      <c:set var="COLS_IN_ROW" value="2"/>
+
       <%--
-      <c:set var="liClose" value="true"/>
-      <c:forEach items="${institutions}" var="institution" varStatus="institutionStatus">
-        <c:if test="${institutionStatus.index mod COLS_IN_ROW == 0}">
-          <li>
-        </c:if>
-          <div class="col">
-            <div class="title"><c:out value="${institution.name}"/></div>
-            <div class="subtitle"><c:out value="${institution.description}"/></div>
-          </div>
-        <c:set var="liClose" value="${institutionStatus.count mod COLS_IN_ROW == 0}"/>
-        <c:if test="${liClose}">
+        <c:set var="liClose" value="true"/>
+        <c:forEach items="${institutions}" var="institution" varStatus="institutionStatus">
+          <c:if test="${institutionStatus.index mod COLS_IN_ROW == 0}">
+            <li>
+          </c:if>
+            <div class="col">
+              <div class="title"><c:out value="${institution.name}"/></div>
+              <div class="subtitle"><c:out value="${institution.description}"/></div>
+            </div>
+          <c:set var="liClose" value="${institutionStatus.count mod COLS_IN_ROW == 0}"/>
+          <c:if test="${liClose}">
+            </li>
+          </c:if>
+        </c:forEach>
+        <c:if test="${!liClose}">
           </li>
         </c:if>
-      </c:forEach>
-      <c:if test="${!liClose}">
-        </li>
-      </c:if>
       --%>
 
       <%-- Rozwiązanie 1.
@@ -39,31 +39,34 @@
           end -> ceil(institutionsSize/ COLS_IN_ROW) - 1
       --%>
       <c:set var="institutionsSize" value="${institutions.size()}"/>
-      <c:forEach begin= "0" end= "${(institutionsSize- 1)+ (COLS_IN_ROW- (institutionsSize % COLS_IN_ROW)) % COLS_IN_ROW}"
-                 var= "index" varStatus="institutionStatus">
-        <%-- Atrybut end można wyliczyć też następująco:
-          end= "${(institutionsSize- 1)+ (institutionsSize % COLS_IN_ROW!= 0? COLS_IN_ROW- institutionsSize % COLS_IN_ROW: 0)}"
-        --%>
-        <c:if test="${institutionStatus.index mod COLS_IN_ROW== 0}">
-          <li>
-        </c:if>
 
-        <c:choose>
-          <c:when test="${index< institutionsSize}">
-            <div class="col">
-              <div class="title"><c:out value="${institutions[index].name}"/></div>
-              <div class="subtitle"><c:out value="${institutions[index].description}"/></div>
-            </div>
-          </c:when>
-          <c:otherwise>
-            <div class="col" style="visibility: hidden">
-          </c:otherwise>
-        </c:choose>
+      <c:if test="${institutionsSize> 0}">
+        <c:forEach begin= "0" end= "${(institutionsSize- 1)+ (COLS_IN_ROW- (institutionsSize % COLS_IN_ROW)) % COLS_IN_ROW}"
+                   var= "index" varStatus="institutionStatus">
+          <%-- Atrybut end można wyliczyć też następująco:
+            end= "${(institutionsSize- 1)+ (institutionsSize % COLS_IN_ROW!= 0? COLS_IN_ROW- institutionsSize % COLS_IN_ROW: 0)}"
+          --%>
+          <c:if test="${institutionStatus.index mod COLS_IN_ROW== 0}">
+            <li>
+          </c:if>
 
-        <c:if test="${institutionStatus.count mod COLS_IN_ROW == 0}">
-          </li>
-        </c:if>
-      </c:forEach>
+          <c:choose>
+            <c:when test="${index< institutionsSize}">
+              <div class="col">
+                <div class="title"><c:out value="${institutions[index].name}"/></div>
+                <div class="subtitle"><c:out value="${institutions[index].description}"/></div>
+              </div>
+            </c:when>
+            <c:otherwise>
+              <div class="col" style="visibility: hidden">
+            </c:otherwise>
+          </c:choose>
+
+          <c:if test="${institutionStatus.count mod COLS_IN_ROW == 0}">
+            </li>
+          </c:if>
+        </c:forEach>
+      </c:if>
 
       <%--
         Wariant 2 -z użyciem 2 kolejnych pętli:
